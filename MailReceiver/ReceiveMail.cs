@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+﻿using ExcelConverter.Domain.Interfaces;
 using OpenPop.Mime;
 using OpenPop.Pop3;
-using ExcelConverter.Domain.Interfaces;
+using System.Configuration;
 
 namespace MailReceiver
 {
@@ -16,15 +11,13 @@ namespace MailReceiver
         {
             using (Pop3Client client = new Pop3Client())
             {
-                client.Connect(ConfigurationManager.AppSettings["MailServerHostName"], 
-                    Int32.Parse(ConfigurationManager.AppSettings["MailServerPort"]), 
+                client.Connect(ConfigurationManager.AppSettings["MailServerHostName"],
+                    Int32.Parse(ConfigurationManager.AppSettings["MailServerPort"]),
                     bool.Parse(ConfigurationManager.AppSettings["MailServerSSL"]));
 
-                client.Authenticate(ConfigurationManager.AppSettings["ReceiverEmail"], 
-                    ConfigurationManager.AppSettings["ReceiverPassword"], 
+                client.Authenticate(ConfigurationManager.AppSettings["ReceiverEmail"],
+                    ConfigurationManager.AppSettings["ReceiverPassword"],
                     AuthenticationMethod.UsernameAndPassword);
-
-                string path = ConfigurationManager.AppSettings["SaveFileAddress"];
 
                 if (client.Connected)
                 {
@@ -41,7 +34,7 @@ namespace MailReceiver
                         {
                             if (IsValidAttachment(ado))
                             {
-                                ado.Save(new FileInfo(Path.Combine(path, ado.FileName)));
+                                ado.Save(new FileInfo(Path.Combine(CreateNewDirectory(), ado.FileName)));
                             }
                         }
                     }
@@ -53,6 +46,17 @@ namespace MailReceiver
         private bool IsValidAttachment(MessagePart attachment)
         {
             return true;
+        }
+
+        private string CreateNewDirectory()
+        {
+            string directoryName = DateTime.Now.ToString("dd-MM-yyyy");
+            string path = ConfigurationManager.AppSettings["SaveFileAddress"] + @"\" + directoryName;
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
         }
     }
 }

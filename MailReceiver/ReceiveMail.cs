@@ -11,9 +11,9 @@ namespace MailReceiver
         {
             using (Pop3Client client = new Pop3Client())
             {
-                client.Connect(ConfigurationManager.AppSettings["MailServerHostName"],
-                    Int32.Parse(ConfigurationManager.AppSettings["MailServerPort"]),
-                    bool.Parse(ConfigurationManager.AppSettings["MailServerSSL"]));
+                client.Connect(ConfigurationManager.AppSettings["POPMailServerHostName"],
+                    Int32.Parse(ConfigurationManager.AppSettings["POPMailServerPort"]),
+                    bool.Parse(ConfigurationManager.AppSettings["POPMailServerSSL"]));
 
                 client.Authenticate(ConfigurationManager.AppSettings["ReceiverEmail"],
                     ConfigurationManager.AppSettings["ReceiverPassword"],

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender", "MailSender\Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelConverter.Repository", "ExcelConverter.Repository\ExcelConverter.Repository.csproj", "{67B9B40D-01E1-4FEB-8AE2-C7C50A7B4AA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHelper", "..\daviddvali\Group-17\G17_Library\DatabaseHelper\DatabaseHelper.csproj", "{6C7BF3A0-3C66-40F4-8030-6D5F23504406}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHelper", "DatabaseHelper\DatabaseHelper.csproj", "{6C7BF3A0-3C66-40F4-8030-6D5F23504406}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelConverterTests", "ExcelConverterTests\ExcelConverterTests.csproj", "{8B8EA479-C1DC-4C91-A70D-1EFA01B92CC8}"
 EndProject

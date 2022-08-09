@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MailReceiver\MailReceiver.csproj" />
+    <ProjectReference Include="..\MailSender\MailSender.csproj" />
   </ItemGroup>
 
 </Project>

@@ -54,9 +54,9 @@ namespace ExcelReader
             string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"];
             directoryPath = directoryPath + @"\" + DateTime.Now.ToString("dd-MM-yyyy");
             var contents = Directory.GetFiles(directoryPath,"*.xml");
-            foreach (var items in contents)
+            foreach (var item in contents)
             {
-                workBook = excel.Workbooks.Open(path);
+                workBook = excel.Workbooks.Open(item);
                 workSheet = workBook.Worksheets[2];
 
                 yield return GetDayOneDTO();

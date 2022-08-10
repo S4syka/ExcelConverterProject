@@ -34,6 +34,5 @@ namespace ExcelConverter.Domain.DTO
 
         //1 დღით ადრე ბაზარზე საპროგნოზო შემოსავალი/გასავალი
         public int IncomePrediction { get; set; }
-
     }
 }

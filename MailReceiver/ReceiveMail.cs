@@ -50,7 +50,7 @@ namespace MailReceiver
 
         private string CreateNewDirectory()
         {
-            string directoryName = DateTime.Now.ToString("dd-MM-yyyy");
+            string directoryName = DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
             string path = ConfigurationManager.AppSettings["SaveFileAddress"] + @"\" + directoryName;
             if (!Directory.Exists(path))
             {

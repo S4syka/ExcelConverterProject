@@ -6,20 +6,11 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelReader
 {
-    public class ReadDayOne
+    public class ReadOneDayEarly
     {
         _Application excel = new _Excel.Application();
         Workbook workBook;
         Worksheet workSheet;
-
-        private string Path { get; set; }
-
-        public ReadDayOne(string path)
-        {
-            this.Path = path;
-            workBook = excel.Workbooks.Open(path);
-            workSheet = workBook.Worksheets[2];
-        }
 
         private double ReadCell(int i, int j)
         {
@@ -52,8 +43,8 @@ namespace ExcelReader
         public IEnumerable<IEnumerable<OneDayEarly>> GetDayOneDTOs()
         {
             string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"];
-            directoryPath = directoryPath + @"\" + DateTime.Now.ToString("dd-MM-yyyy");
-            var contents = Directory.GetFiles(directoryPath,"*.xml");
+            directoryPath = directoryPath + @"\" + DateTime.Now.ToString(ConfigurationManager.AppSettings["SaveFileAddress"]);
+            var contents = Directory.GetFiles(directoryPath, "*.xlsx");
             foreach (var item in contents)
             {
                 workBook = excel.Workbooks.Open(item);

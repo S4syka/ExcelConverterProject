@@ -16,7 +16,7 @@ namespace MailSender
         public void SendMailAttachments(string receiver, string subject)
         {
             string path = ConfigurationManager.AppSettings["SaveFileAddress"];
-            string directoryName = DateTime.Now.ToString("dd-MM-yyyy");
+            string directoryName = DateTime.Now.ToString(ConfigurationManager.AppSettings["SaveFileAddress"]);
             path = path + @"\" + directoryName;
 
             Attachment data = new Attachment(path);

@@ -13,8 +13,13 @@ SendMail sendMail = new SendMail();
 
 sendMail.SendMailAttachments("e.khomasuridzemails@yahoo.com","test123");
 */
-ReadDayOne readDayOne = new(@"C:\Users\Rabbitt\Downloads\20220809_Portfolio_BG-GEORGIAN BUILDING GROUP_1.xlsx");
+ReadOneDayEarly readDayOne = new();
 
-var xd = readDayOne.Items();
+var xd = readDayOne.GetDayOneDTOs();
+
+foreach(var items in xd)
+{
+    Console.WriteLine(items.ToString());
+}
 
 Console.WriteLine("123");

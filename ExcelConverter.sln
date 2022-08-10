@@ -19,7 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHelper", "DatabaseH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelConverterTests", "ExcelConverterTests\ExcelConverterTests.csproj", "{8B8EA479-C1DC-4C91-A70D-1EFA01B92CC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReader", "ExcelReader\ExcelReader.csproj", "{3C02B0D5-FCC5-42FF-8570-3CF080E56AE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelReader", "ExcelReader\ExcelReader.csproj", "{3C02B0D5-FCC5-42FF-8570-3CF080E56AE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelBuilder", "ExcelBuilder\ExcelBuilder.csproj", "{EB919CB0-B98B-43E9-BFB8-B21F6A176ACF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{3C02B0D5-FCC5-42FF-8570-3CF080E56AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C02B0D5-FCC5-42FF-8570-3CF080E56AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C02B0D5-FCC5-42FF-8570-3CF080E56AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB919CB0-B98B-43E9-BFB8-B21F6A176ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB919CB0-B98B-43E9-BFB8-B21F6A176ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB919CB0-B98B-43E9-BFB8-B21F6A176ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB919CB0-B98B-43E9-BFB8-B21F6A176ACF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

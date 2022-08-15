@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using MailReceiver;
-using MailSender;
+using ExcelBuilder;
+using ExcelConverter.Domain.DTO;
 using ExcelReader;
+using MailReceiver;
 
 Console.WriteLine("Hello, World!");
 
@@ -13,13 +14,16 @@ SendMail sendMail = new SendMail();
 
 sendMail.SendMailAttachments("e.khomasuridzemails@yahoo.com","test123");
 */
+
 ReadOneDayEarly readDayOne = new();
 
 var xd = readDayOne.GetDayOneDTOs();
 
-foreach(var items in xd)
+//Console.WriteLine(new BuildOneDayEarly().BuildExcel(null));
+foreach(var item in xd)
 {
-    Console.WriteLine(items.ToString());
+    BuildOneDayEarly buildOneDayEarly = new BuildOneDayEarly();
+    buildOneDayEarly.BuildExcel(item);
 }
 
 Console.WriteLine("123");

@@ -58,5 +58,7 @@ namespace MailReceiver
             }
             return path;
         }
+
+        // TODO: Add method that returns company name.
     }
 }

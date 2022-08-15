@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExcelBuilder\ExcelBuilder.csproj" />
+    <ProjectReference Include="..\ExcelConverter.Domain\ExcelConverter.Domain.csproj" />
     <ProjectReference Include="..\ExcelReader\ExcelReader.csproj" />
     <ProjectReference Include="..\MailReceiver\MailReceiver.csproj" />
     <ProjectReference Include="..\MailSender\MailSender.csproj" />

@@ -8,7 +8,7 @@ namespace ExcelConverter.Domain.DTO
 {
     public class OneDayEarlyHour
     {
-        //ფიზიკური მიწოდების პერიოდი
+        //დრო
         public int Hour { get; set; }
 
         //2 დღით ადრე მოხმარების პროგნოზი

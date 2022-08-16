@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ExcelConverter.Domain.DTO
 {
-    public class OneDayEarly
+    public class Contractor
     {
-        public IEnumerable<OneDayEarlyHour> Hour { get; set; }
+        public string BGCode { get; set; }
 
-        public string CompanyName { get; set; }
+        public IEnumerable<double> Price { get; set; }
     }
 }

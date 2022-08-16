@@ -7,15 +7,15 @@ namespace ExcelReader
 {
     public class ReadOneDayEarly
     {
-        _Application excel = new _Excel.Application();
-        Workbook workBook;
-        Worksheet workSheet;
+        private _Application _excel = new _Excel.Application();
+        private Workbook _workBook;
+        private Worksheet _workSheet;
 
         private double ReadCell(int i, int j)
         {
-            if (workSheet.Cells[i][j].Value != null)
+            if (_workSheet.Cells[i][j].Value != null)
             {
-                return workSheet.Cells[i][j].Value;
+                return _workSheet.Cells[i][j].Value;
             }
             else return 0;
         }
@@ -46,12 +46,12 @@ namespace ExcelReader
             var contents = Directory.GetFiles(directoryPath, "*.xlsx");
             foreach (var item in contents)
             {
-                workBook = excel.Workbooks.Open(item);
-                workSheet = workBook.Worksheets[2];
+                _workBook = _excel.Workbooks.Open(item);
+                _workSheet = _workBook.Worksheets[2];
 
-                yield return new OneDayEarly(GetDayOneDTO(), workSheet.Cells[2][1].Value);
+                yield return new OneDayEarly() {Hour = GetDayOneDTO(),CompanyName = _workSheet.Cells[2][1].Value };
 
-                workBook.Close();
+                _workBook.Close();
             }
         }
     }

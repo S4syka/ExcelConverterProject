@@ -29,15 +29,15 @@ namespace ExcelBuilder
         private void FillExcelValues(TwoDayEarly twoDayEarly)
         {
             _workBook = _excel.Workbooks.Open(Path);
-            _workSheet = _workBook.Worksheets[0];
+            _workSheet = _workBook.Worksheets[1];
 
             _workSheet.Cells[2][17]=twoDayEarly.CompanyName;
 
-            List<Contractor> contractors = (List<Contractor>)twoDayEarly.Contractors;
-
-            for(int i = 0; i<contractors.Count; i++)
+            int i = 0;
+            foreach(var item in twoDayEarly.Contractors)
             {
-                FillExcelContractorValues(i, contractors[i]);
+                FillExcelContractorValues(i, item);
+                i++;
             }
 
             _excel.Workbooks.Close();
@@ -48,7 +48,7 @@ namespace ExcelBuilder
         {
             _workSheet.Cells[2 + index][22] = 1;
             _workSheet.Cells[2 + index][23] = "A02";
-            _workSheet.Cells[2 + index][24] = "8716867000016";
+            _workSheet.Cells[2 + index][24] = "'8716867000016";
             _workSheet.Cells[2 + index][25] = "A03";
             //_workSheet.Cells[2 + index][26] = "???????"; trade relation
             _workSheet.Cells[2 + index][27] = "10Y1001A1001B012";
@@ -86,6 +86,7 @@ namespace ExcelBuilder
                 {
                     _workSheet.Cells[2 + index][k] = item;
                 }
+                k++;
             }
         }
 
@@ -104,7 +105,7 @@ namespace ExcelBuilder
         private string CreateNewDirectory()
         {
             string directoryName = DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
-            string path = ConfigurationManager.AppSettings["SendAuctionFileAddress"] + @"\" + directoryName;
+            string path = ConfigurationManager.AppSettings["SendTPSFileAddress"] + @"\" + directoryName;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -122,7 +123,7 @@ namespace ExcelBuilder
         {
             return ConfigurationManager.AppSettings["SendTPSFileAddress"] + @"\" +
                 DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]) + @"\" +
-                DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]) + "_" + name + ".xlsx";
+                DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]) + "_" + name + ".xlsm";
         }
     }
 }

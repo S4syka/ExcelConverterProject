@@ -7,15 +7,15 @@ namespace ExcelReader
 {
     public class ReadTwoDayEarly
     {
-        private _Application excel = new _Excel.Application();
-        private Workbook workBook;
-        private Worksheet workSheet;
+        private _Application _excel = new _Excel.Application();
+        private Workbook _workBook;
+        private Worksheet _workSheet;
 
         private double ReadCell(int i, int j)
         {
-            if (workSheet.Cells[i][j].Value != null)
+            if (_workSheet.Cells[i][j].Value != null)
             {
-                return workSheet.Cells[i][j].Value;
+                return _workSheet.Cells[i][j].Value;
             }
             else return 0;
         }
@@ -49,12 +49,12 @@ namespace ExcelReader
             int i = 0;
             while (true)
             {
-                var temp = workSheet.Cells[i + 7][7].Value;
+                var temp = Convert.ToString(_workSheet.Cells[i + 7][7].Value);
                 if (temp == null || temp == "") break;
 
                 yield return new Contractor()
                 {
-                    BGCode = Convert.ToString(ReadCell(i + 7, 4)),
+                    BGCode = _workSheet.Cells[i + 7][4].Value,
                     Price = GetContractorPrices(i)
                 };
 
@@ -69,17 +69,17 @@ namespace ExcelReader
             var contents = Directory.GetFiles(directoryPath, "*.xlsx");
             foreach (var item in contents)
             {
-                workBook = excel.Workbooks.Open(item);
-                workSheet = workBook.Worksheets[0];
+                _workBook = _excel.Workbooks.Open(item);
+                _workSheet = _workBook.Worksheets[1];
 
                 yield return new TwoDayEarly()
                 {
-                    CompanyName = Convert.ToString(ReadCell(1, 1)),
+                    CompanyName = _workSheet.Cells[1][1].Value,
                     Hour = GetDayTwoHours(),
                     Contractors = GetContractors()
                 } ;
 
-                workBook.Close();
+                _workBook.Close();
             }
         }
     }

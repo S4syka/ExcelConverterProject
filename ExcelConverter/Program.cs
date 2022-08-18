@@ -14,7 +14,7 @@ SendMail sendMail = new SendMail();
 
 sendMail.SendMailAttachments("e.khomasuridzemails@yahoo.com","test123");
 */
-
+/*
 ReadOneDayEarly readDayOne = new();
 
 var xd = readDayOne.GetDayOneDTOs();
@@ -25,5 +25,5 @@ foreach(var item in xd)
     BuildOneDayEarly buildOneDayEarly = new BuildOneDayEarly();
     buildOneDayEarly.BuildExcel(item);
 }
-
+*/
 Console.WriteLine("123");

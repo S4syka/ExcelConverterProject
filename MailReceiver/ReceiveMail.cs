@@ -43,6 +43,8 @@ namespace MailReceiver
         }
 
         // TODO: Check attachemnt names for date control.
+        // TODO: Check attachment names and divide in different directories.
+
         private bool IsValidAttachment(MessagePart attachment)
         {
             return true;

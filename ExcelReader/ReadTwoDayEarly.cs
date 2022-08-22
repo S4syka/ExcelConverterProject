@@ -40,7 +40,7 @@ namespace ExcelReader
         {
             for (int i = 0; i < 24; i++)
             {
-                yield return Convert.ToDouble(ReadCell(index + 6, i + 7));
+                yield return Convert.ToDouble(ReadCell(index + 7, i + 7));
             }
         }
 
@@ -72,11 +72,14 @@ namespace ExcelReader
                 _workBook = _excel.Workbooks.Open(item);
                 _workSheet = _workBook.Worksheets[1];
 
+                var hour = GetDayTwoHours();
+                var contractors = GetContractors();
+
                 yield return new TwoDayEarly()
                 {
                     CompanyName = _workSheet.Cells[1][1].Value,
-                    Hour = GetDayTwoHours(),
-                    Contractors = GetContractors()
+                    Hour = hour,
+                    Contractors = contractors
                 } ;
 
                 _workBook.Close();

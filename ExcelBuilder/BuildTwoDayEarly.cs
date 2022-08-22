@@ -46,6 +46,7 @@ namespace ExcelBuilder
 
         private void FillExcelContractorValues(int index, Contractor contractor)
         {
+            _workSheet.Cells[2 + index][21] = "TS00" +$"{index+1}";
             _workSheet.Cells[2 + index][22] = 1;
             _workSheet.Cells[2 + index][23] = "A02";
             _workSheet.Cells[2 + index][24] = "'8716867000016";
@@ -53,7 +54,8 @@ namespace ExcelBuilder
             //_workSheet.Cells[2 + index][26] = "???????"; trade relation
             _workSheet.Cells[2 + index][27] = "10Y1001A1001B012";
             _workSheet.Cells[2 + index][28] = "A01";
-            _workSheet.Cells[2 + index][29] = "A01";
+            _workSheet.Cells[2 + index][29] = "10Y1001A1001B012";
+            _workSheet.Cells[2 + index][30] = "A01";
             //_workSheet.Cells[2 + index][31] = "???????"; inparty +
             _workSheet.Cells[2 + index][32] = "A01";
             //_workSheet.Cells[2 + index][33] = "????????"; outparty +
@@ -61,7 +63,7 @@ namespace ExcelBuilder
             //_workSheet.Cells[2 + index][35] = "????????????"; CapacityContractType
             //_workSheet.Cells[2 + index][36] = "???????????"; CapacityAgreementIdentification
             _workSheet.Cells[2 + index][37] = "MAW";
-            //_workSheet.Cells[2 + index][38] = "???????"; TimeInterval
+            _workSheet.Cells[2 + index][38] = "2022-08-08T22:00Z/2022-08-09T22:00Z";
             _workSheet.Cells[2 + index][39] = "PT60M";
 
             int k = 41;
@@ -113,10 +115,9 @@ namespace ExcelBuilder
             return path;
         }
 
-        // TODO: Add automatic temp path reader
         private string GetTempPath()
         {
-            return @"C:\Users\Rabbitt\Source\Repos\S4syka\ExcelConverterProject\ExcelBuilder\Templates\Temp2.xlsm";
+            return ConfigurationManager.AppSettings["TempForTPSPath"];
         }
 
         private string GetDestinationPath(string name)

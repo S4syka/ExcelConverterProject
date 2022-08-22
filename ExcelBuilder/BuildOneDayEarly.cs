@@ -46,10 +46,9 @@ namespace ExcelBuilder
             return path;
         }
 
-        // TODO: Add automatic temp path reader
         private string GetTempPath()
         {
-            return @"C:\Users\Rabbitt\Source\Repos\S4syka\ExcelConverterProject\ExcelBuilder\Templates\TemplateForAuction.xlsx";
+            return ConfigurationManager.AppSettings["TempForAuctionPath"];
         }
 
         private string GetDestinationPath(string name)

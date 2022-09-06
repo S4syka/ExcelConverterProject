@@ -19,14 +19,14 @@ namespace ExcelBuilder
         private string Path { get; set; }
         private string Source { get; set; }
 
-        public void BuildExcel(TwoDayEarly twoDayEarly)
+        public void BuildExcel(TwoDayEarlyModel twoDayEarly)
         {
             CreateExcelTemp(twoDayEarly.CompanyName);
 
             FillExcelValues(twoDayEarly);
         }
 
-        private void FillExcelValues(TwoDayEarly twoDayEarly)
+        private void FillExcelValues(TwoDayEarlyModel twoDayEarly)
         {
             _workBook = _excel.Workbooks.Open(Path);
             _workSheet = _workBook.Worksheets[1];
@@ -36,7 +36,7 @@ namespace ExcelBuilder
             int i = 0;
             foreach(var item in twoDayEarly.Contractors)
             {
-                FillExcelContractorValues(i, item);
+                FillExcelContractorValues(i, item, twoDayEarly.CompanyName);
                 i++;
             }
 
@@ -44,7 +44,7 @@ namespace ExcelBuilder
             _excel.Quit();
         }
 
-        private void FillExcelContractorValues(int index, Contractor contractor)
+        private void FillExcelContractorValues(int index, ContractorModel contractor, string portfolio)
         {
             _workSheet.Cells[2 + index][21] = "TS00" +$"{index+1}";
             _workSheet.Cells[2 + index][22] = 1;
@@ -71,16 +71,15 @@ namespace ExcelBuilder
             {
                 if (item > 0)
                 {
-                    _workSheet.Cells[2 + index][31] = contractor.BGCode; //inparty
-                    _workSheet.Cells[2 + index][33] = "65YBG-TRADINGSOF"; //outparty
+                    _workSheet.Cells[2 + index][33] = contractor.BGCode; //inparty
+                    _workSheet.Cells[2 + index][31] = portfolio; //outparty
 
                     _workSheet.Cells[2 + index][k] = item;
                 }
                 else if(item < 0)
                 {
-
-                    _workSheet.Cells[2 + index][33] = contractor.BGCode; //outparty
-                    _workSheet.Cells[2 + index][31] = "65YBG-TRADINGSOF"; //inparty
+                    _workSheet.Cells[2 + index][31] = contractor.BGCode; //outparty
+                    _workSheet.Cells[2 + index][33] = portfolio; //inparty
 
                     _workSheet.Cells[2 + index][k] = item * (-1);
                 }

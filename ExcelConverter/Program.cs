@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ExcelBuilder;
-using ExcelConverter.Domain.DTO;
 using ExcelReader;
 using MailReceiver;
 

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelConverter.Domain.DTO
+namespace ExcelConverter.Domain.DTOs
 {
-    public class Contractor
+    public class TwoDayEarlyContractor
     {
+        public int Id { get; set; }
+        public int TwoDayEarlyExcelId { get; set; }
         public string BGCode { get; set; }
-
-        public IEnumerable<double> Price { get; set; }
     }
 }

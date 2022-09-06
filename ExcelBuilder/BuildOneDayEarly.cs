@@ -14,7 +14,7 @@ namespace ExcelBuilder
         private string Path { get; set; }
         private string Source { get; set; }
 
-        public void BuildExcel(OneDayEarly oneDayEarly)
+        public void BuildExcel(OneDayEarlyModel oneDayEarly)
         {
             CreateExcelTemp(oneDayEarly.CompanyName);
 
@@ -58,7 +58,7 @@ namespace ExcelBuilder
                 DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]) + "_" + name + ".xlsx";
         }
 
-        private List<double> GetFirstRow(IEnumerable<OneDayEarlyHour> data)
+        private List<double> GetFirstRow(IEnumerable<OneDayEarlyHourModel> data)
         {
             List<double> rawRow = new List<double>();
             List<double> row = new List<double>();
@@ -91,7 +91,7 @@ namespace ExcelBuilder
             return row;
         }
 
-        private void FillExcelFile(List<double> firstRow, IEnumerable<OneDayEarlyHour> data, string companyName)
+        private void FillExcelFile(List<double> firstRow, IEnumerable<OneDayEarlyHourModel> data, string companyName)
         {
             _workBook = _excel.Workbooks.Open(Path);
             _workSheet = _workBook.Worksheets[1];
@@ -120,7 +120,9 @@ namespace ExcelBuilder
                 i++;
             }
 
-            SaveCell(5, 2, companyName);
+            _workSheet.Name=companyName + "  GE Curve";
+
+            SaveCell(5, 2, companyName + " ");
 
             _excel.Workbooks.Close();
             _excel.Quit();

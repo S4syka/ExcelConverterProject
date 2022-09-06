@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExcelConverter.Domain.DTO
 {
-    public class TwoDayEarlyHour
+    public class TwoDayEarlyHourModel
     {
         //დრო
         public int Hour { get; set; }

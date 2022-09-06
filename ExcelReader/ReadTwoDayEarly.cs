@@ -20,11 +20,11 @@ namespace ExcelReader
             else return 0;
         }
 
-        private IEnumerable<TwoDayEarlyHour> GetDayTwoHours()
+        private IEnumerable<TwoDayEarlyHourModel> GetDayTwoHours()
         {
             for (int i = 1; i < 25; i++)
             {
-                yield return new TwoDayEarlyHour()
+                yield return new TwoDayEarlyHourModel()
                 {
                     Hour = i,
                     Usage = Convert.ToDouble(ReadCell(2, i + 6)),
@@ -44,7 +44,7 @@ namespace ExcelReader
             }
         }
 
-        private IEnumerable<Contractor> GetContractors()
+        private IEnumerable<ContractorModel> GetContractors()
         {
             int i = 0;
             while (true)
@@ -52,7 +52,7 @@ namespace ExcelReader
                 var temp = Convert.ToString(_workSheet.Cells[i + 7][7].Value);
                 if (temp == null || temp == "") break;
 
-                yield return new Contractor()
+                yield return new ContractorModel()
                 {
                     BGCode = _workSheet.Cells[i + 7][4].Value,
                     Price = GetContractorPrices(i)
@@ -62,27 +62,30 @@ namespace ExcelReader
             }
         }
 
-        public IEnumerable<TwoDayEarly> GetTwoDayEarlyDTOs()
+        public IEnumerable<TwoDayEarlyModel> GetTwoDayEarlyDTOs()
         {
-            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"];
+            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"] + "_TwoDaysEarly";
             directoryPath = directoryPath + @"\" + DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
-            var contents = Directory.GetFiles(directoryPath, "*.xlsx");
-            foreach (var item in contents)
+            if (Directory.Exists(directoryPath))
             {
-                _workBook = _excel.Workbooks.Open(item);
-                _workSheet = _workBook.Worksheets[1];
-
-                var hour = GetDayTwoHours();
-                var contractors = GetContractors();
-
-                yield return new TwoDayEarly()
+                var contents = Directory.GetFiles(directoryPath, "*.xlsx");
+                foreach (var item in contents)
                 {
-                    CompanyName = _workSheet.Cells[1][1].Value,
-                    Hour = hour,
-                    Contractors = contractors
-                } ;
+                    _workBook = _excel.Workbooks.Open(item);
+                    _workSheet = _workBook.Worksheets[1];
 
-                _workBook.Close();
+                    var hour = GetDayTwoHours();
+                    var contractors = GetContractors();
+
+                    yield return new TwoDayEarlyModel()
+                    {
+                        CompanyName = _workSheet.Cells[1][1].Value,
+                        Hour = hour,
+                        Contractors = contractors
+                    };
+
+                    _workBook.Close();
+                }
             }
         }
     }

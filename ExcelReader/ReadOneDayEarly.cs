@@ -20,11 +20,11 @@ namespace ExcelReader
             else return 0;
         }
 
-        private IEnumerable<OneDayEarlyHour> GetDayOneDTO()
+        private IEnumerable<OneDayEarlyHourModel> GetDayOneDTO()
         {
             for (int i = 1; i < 25; i++)
             {
-                yield return new OneDayEarlyHour()
+                yield return new OneDayEarlyHourModel()
                 {
                     Hour = i,
                     PredictionTwoDays = Convert.ToDouble(ReadCell(2, i + 6)),
@@ -39,19 +39,22 @@ namespace ExcelReader
             }
         }
 
-        public IEnumerable<OneDayEarly> GetDayOneDTOs()
+        public IEnumerable<OneDayEarlyModel> GetDayOneDTOs()
         {
-            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"];
+            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"]+ @"_OneDayEarly";
             directoryPath = directoryPath + @"\" + DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
-            var contents = Directory.GetFiles(directoryPath, "*.xlsx");
-            foreach (var item in contents)
+            if (Directory.Exists(directoryPath))
             {
-                _workBook = _excel.Workbooks.Open(item);
-                _workSheet = _workBook.Worksheets[2];
+                var contents = Directory.GetFiles(directoryPath, "*.xlsx");
+                foreach (var item in contents)
+                {
+                    _workBook = _excel.Workbooks.Open(item);
+                    _workSheet = _workBook.Worksheets[2];
 
-                yield return new OneDayEarly() {Hour = GetDayOneDTO(),CompanyName = _workSheet.Cells[2][1].Value };
+                    yield return new OneDayEarlyModel() { Hour = GetDayOneDTO(), CompanyName = _workSheet.Cells[2][1].Value };
 
-                _workBook.Close();
+                    _workBook.Close();
+                }
             }
         }
     }

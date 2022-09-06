@@ -34,7 +34,10 @@ namespace MailReceiver
                         {
                             if (IsValidAttachment(ado))
                             {
-                                ado.Save(new FileInfo(Path.Combine(CreateNewDirectory(), ado.FileName)));
+                                if(ado.FileName.Contains("_1"))
+                                ado.Save(new FileInfo(Path.Combine(CreateNewDirectory("TwoDaysEarly"), ado.FileName)));
+                                if (ado.FileName.Contains("_2"))
+                                ado.Save(new FileInfo(Path.Combine(CreateNewDirectory("OneDayEarly"), ado.FileName)));
                             }
                         }
                     }
@@ -50,10 +53,10 @@ namespace MailReceiver
             return true;
         }
 
-        private string CreateNewDirectory()
+        private string CreateNewDirectory(string typeOfFile)
         {
             string directoryName = DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
-            string path = ConfigurationManager.AppSettings["SaveFileAddress"] + @"\" + directoryName;
+            string path = ConfigurationManager.AppSettings["SaveFileAddress"]+ $"_{typeOfFile}" + @"\" + directoryName;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

@@ -1,4 +1,4 @@
-﻿using ExcelConverter.Domain.DTO;
+﻿using ExcelConverter.Domain.Model;
 using Microsoft.Office.Interop.Excel;
 using System.Configuration;
 using _Excel = Microsoft.Office.Interop.Excel;

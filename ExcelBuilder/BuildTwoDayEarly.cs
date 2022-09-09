@@ -1,6 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
-using ExcelConverter.Domain.DTO;
+using ExcelConverter.Domain.Model;
 using System.Configuration;
 using System;
 using System.Collections.Generic;

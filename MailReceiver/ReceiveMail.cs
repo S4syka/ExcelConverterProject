@@ -26,6 +26,7 @@ namespace MailReceiver
                     for (int i = messageCount; i > 0; i--)
                     {
                         allMessages.Add(client.GetMessage(i));
+                        client.DeleteMessage(i);
                     }
                     foreach (Message msg in allMessages)
                     {

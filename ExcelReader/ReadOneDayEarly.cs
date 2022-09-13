@@ -20,7 +20,7 @@ namespace ExcelReader
             else return 0;
         }
 
-        private IEnumerable<OneDayEarlyHourModel> GetDayOneDTO()
+        private IEnumerable<OneDayEarlyHourModel> GetDayOneModel()
         {
             for (int i = 1; i < 25; i++)
             {
@@ -39,9 +39,9 @@ namespace ExcelReader
             }
         }
 
-        public IEnumerable<OneDayEarlyModel> GetDayOneDTOs()
+        public IEnumerable<OneDayEarlyModel> GetDayOneModels()
         {
-            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"]+ @"_OneDayEarly";
+            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"]+ @"\OneDayEarly";
             directoryPath = directoryPath + @"\" + DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
             if (Directory.Exists(directoryPath))
             {
@@ -51,7 +51,7 @@ namespace ExcelReader
                     _workBook = _excel.Workbooks.Open(item);
                     _workSheet = _workBook.Worksheets[2];
 
-                    yield return new OneDayEarlyModel() { Hour = GetDayOneDTO(), CompanyName = _workSheet.Cells[2][1].Value };
+                    yield return new OneDayEarlyModel() { Hour = GetDayOneModel(), CompanyName = _workSheet.Cells[2][1].Value };
 
                     _workBook.Close();
                 }

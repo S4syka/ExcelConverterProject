@@ -8,7 +8,7 @@ using ExcelConverter.Domain.DTOs;
 
 namespace ExcelConverter.Repository
 {
-    public class OneDayEarlyHoursRepository : BaseRepository<OneDayEarlyExcel>
+    public class OneDayEarlyHoursRepository : BaseRepository<OneDayEarlyHour>
     {
         public OneDayEarlyHoursRepository(Database database) : base(database)
         {

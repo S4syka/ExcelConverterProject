@@ -26,7 +26,7 @@ namespace MailReceiver
                     for (int i = messageCount; i > 0; i--)
                     {
                         allMessages.Add(client.GetMessage(i));
-                        client.DeleteMessage(i);
+                        //client.DeleteMessage(i);
                     }
                     foreach (Message msg in allMessages)
                     {
@@ -57,7 +57,7 @@ namespace MailReceiver
         private string CreateNewDirectory(string typeOfFile)
         {
             string directoryName = DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
-            string path = ConfigurationManager.AppSettings["SaveFileAddress"]+ $"_{typeOfFile}" + @"\" + directoryName;
+            string path = ConfigurationManager.AppSettings["SaveFileAddress"]+ @$"\{typeOfFile}" + @"\" + directoryName;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

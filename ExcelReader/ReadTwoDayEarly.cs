@@ -62,9 +62,9 @@ namespace ExcelReader
             }
         }
 
-        public IEnumerable<TwoDayEarlyModel> GetTwoDayEarlyDTOs()
+        public IEnumerable<TwoDayEarlyModel> GetTwoDayEarlyModels()
         {
-            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"] + "_TwoDaysEarly";
+            string directoryPath = ConfigurationManager.AppSettings["SaveFileAddress"] + @"\TwoDaysEarly";
             directoryPath = directoryPath + @"\" + DateTime.Now.ToString(ConfigurationManager.AppSettings["DateTimePattern"]);
             if (Directory.Exists(directoryPath))
             {
